@@ -110,12 +110,10 @@ def render(stdscr, engine: GameEngine, profile: GlyphProfile) -> None:
                 pass
 
     hud_y = level.height
-    weapon = player.weapon.display_name() if player.weapon else "none"
-    armor = player.armor.display_name() if player.armor else "none"
     status = (
         f" F{level.depth}/5 HP {player.hp}/{player.max_hp} STR {player.strength} "
         f"ATK {player.attack_skill()} DEF {player.defense_skill()} "
-        f"Gold {player.gold} Wpn {weapon} Arm {armor} Inv {len(player.inventory)} "
+        f"Gold {player.gold} Kills {engine.state.kills} "
     )
     _draw_boxed_line(stdscr, hud_y, status[: level.width - 2], level.width, profile)
     controls = " arrows move  z get  i inv  v stairs  x wait  q save+quit "

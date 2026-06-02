@@ -262,6 +262,7 @@ class GameState:
     seed: int
     rng_state: Any
     turn: int = 0
+    kills: int = 0
     log: list[str] = field(default_factory=list)
     dead: bool = False
     won: bool = False
@@ -274,6 +275,7 @@ class GameState:
             "seed": self.seed,
             "rng_state": self.rng_state,
             "turn": self.turn,
+            "kills": self.kills,
             "log": self.log[-8:],
             "dead": self.dead,
             "won": self.won,
@@ -287,6 +289,7 @@ class GameState:
             seed=data["seed"],
             rng_state=data["rng_state"],
             turn=data["turn"],
+            kills=data.get("kills", 0),
             log=data.get("log", []),
             dead=data.get("dead", False),
             won=data.get("won", False),

@@ -395,6 +395,7 @@ class GameEngine:
             enemy.hp -= damage
             self.log(f"You hit the {enemy.name} for {damage}.")
             if enemy.hp <= 0:
+                self.state.kills += 1
                 self.log(f"You defeat the {enemy.name}.")
                 if enemy.boss:
                     self.state.level.boss_defeated = True

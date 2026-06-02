@@ -135,6 +135,15 @@ class CombatInventoryTests(unittest.TestCase):
         self.assertEqual(player.hp, before - 10)
         self.assertIn("The Slime crushes you for 10.", engine.state.log[-1])
 
+    def test_player_kills_increment_run_counter(self) -> None:
+        engine = GameEngine.new(seed=8)
+        enemy = Enemy("e", "rat", "rat", "r", engine.state.player.x + 1, engine.state.player.y, 1, 1, 1, 0, 1, 1)
+        engine.state.level.enemies = [enemy]
+        self.assertEqual(engine.state.kills, 0)
+        with patch.object(engine, "_hits", return_value=True):
+            engine._attack_player_to_enemy(enemy)
+        self.assertEqual(engine.state.kills, 1)
+
 
 class SaveLoadTests(unittest.TestCase):
     def test_default_save_path_uses_terminal_descent_name(self) -> None:
@@ -152,11 +161,13 @@ class SaveLoadTests(unittest.TestCase):
             engine = GameEngine.new(seed=12, save_manager=manager)
             engine.wait()
             engine.state.player.gold = 42
+            engine.state.kills = 3
             engine.autosave()
             loaded = GameEngine.load(manager)
             self.assertEqual(loaded.state.seed, 12)
             self.assertEqual(loaded.state.turn, engine.state.turn)
             self.assertEqual(loaded.state.player.gold, 42)
+            self.assertEqual(loaded.state.kills, 3)
             self.assertEqual(loaded.state.level.depth, engine.state.level.depth)
             self.assertEqual(loaded.state.level.tiles, engine.state.level.tiles)
             self.assertEqual(len(loaded.state.level.enemies), len(engine.state.level.enemies))
