@@ -2,10 +2,7 @@
 
 A dungeon crawler roguelike game that can be played within your terminal. Play while you wait for your agents :)
 
-<video width="400" controls loop="" muted="" autoplay="">
-    <source src="https://github.com/k-wong/terminal-descent/raw/b33610097e8b6217feea07812d08c47e1eca3e25/demo.mov" />
-</video>
-
+https://github.com/user-attachments/assets/5779e4cb-56be-4c26-aa3d-759b5b1ce12b
 
 ## Core gameplay
 
