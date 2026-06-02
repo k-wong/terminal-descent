@@ -2,6 +2,8 @@
 
 A dungeon crawler roguelike game that can be played within your terminal. Play while you wait for your agents :)
 
+https://github.com/k-wong/terminal-descent/blob/b33610097e8b6217feea07812d08c47e1eca3e25/demo.mov
+
 ## Core gameplay
 
 A compact turn-based roguelike with one player action followed by enemy actions. It includes random dungeons, permadeath, loot, equipment, stats, and bosses.
